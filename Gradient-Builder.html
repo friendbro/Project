@@ -1,0 +1,244 @@
+<!doctype html5>
+<html>
+ <head>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gradient Builder</title>
+  <style>
+  body {
+ font-family: 'Open Sans', sans-serif;
+ background-color: black;
+  color: white;
+}
+
+h1 {
+ text-align: center;
+ font-family: cursive;
+ border: solid 1px;
+ padding: 5px;
+ border-radius: 20px;
+ background-color: #252525;
+}
+
+.inputLine {
+ text-align: left;
+}
+
+#gradient {
+ width: 80vw;
+ height: 150px;
+ background-color;  #252525;
+ margin: 0 auto;
+}
+
+#code {
+ background:  #252525;
+ padding: 10px;
+ border: 1px black solid;
+ border-radius: 5px;
+}
+
+button {
+display: block;
+ margin: 0 auto;
+ padding: 10px;
+ border-radius: 20px;
+ background-color: #252525;
+ color: white;
+}
+	.sidenav {
+		height: 100%;
+		width: 0;
+		position: fixed;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		background-color: #111;
+		overflow-x: hidden;
+		transition: 0.3s;
+		padding-top: 60px;
+		}
+	.sidenav a {
+		padding: 8px 8px 8px 32px; 
+		text-decoration: none;
+		font-size: 25px;
+		color: #818181; display: block; transition: 0.2s;
+		}
+	.sidenav a:hover {
+		color: #f1f1f1; 
+		} 
+		.sidenav .closebtn { 
+		position: absolute;
+		top: 0;
+		right: 25px;
+		font-size: 36px;
+		margin-left: 50px;
+		} 
+		@media screen and (max-height: 450px) { 
+		.sidenav {
+			padding-top: 15px;
+			} 
+			.sidenav a {
+				font-size: 18px;
+				} 
+				} 
+.sidelink {
+
+}
+</style>
+ </head>
+ <body>
+  <div id="mySidenav" class="sidenav"> 
+				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a> 
+<a href="index.html"> Home</a> 
+				<a href="project.html">Projects</a> 
+				<a href="contact.html">Contact</a>
+		 </div> 
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">☰</span>
+  </div>
+ <h1>Gradient Builder</h1>
+  <ol>
+   <li>Build your gradient by selecting
+    colors and angle</li>
+   <li>Copy-paste the code to your own
+    playground</li>
+  </ol>
+  <p class="inputLine">Color 1: <input
+    id="color1" type="color"
+    oninput="updateGradient();">
+  </p>
+  <p class="inputLine"> Color 2: <input
+    id="color2" type="color"
+    oninput="updateGradient();"></p>
+  <p class="inputLine">Angle: <input
+    id="angle" type="number" min="0"
+    max="360" pattern="[0-9]*"
+    oninput="updateGradient();"></p>
+  <div id="gradient"></div>
+  <p id="code"></p>
+  <button onclick="copyCode();">Copy code
+   to clipboard</button>
+  <script>
+  function openNav() { 
+document.getElementById("mySidenav").style.width = "80%"; 
+  } 
+  function closeNav() {  document.getElementById("mySidenav").style.width = "0"; 
+  }
+  function updateGradient() {
+ var color1 = document.getElementById(
+  "color1").value;
+ var color2 = document.getElementById(
+  "color2").value;
+ var angle = document.getElementById(
+  "angle").value;
+ console.log("update: " + color1 +
+  "/" +
+  color2 + " & " + angle + "deg");
+ setGradient(color1, color2, angle);
+}
+function setGradient(color1, color2,
+ angle) {
+ var gradient = document.getElementById(
+  "gradient");
+ var gradientCode = "linear-gradient(" +
+  angle + "deg, " +
+  color1 + ", " +
+  color2 + ")";
+ gradient.style.background =
+  gradientCode;
+ var code = document.getElementById(
+  "code");
+ code.innerHTML =
+  `
+ .div {
+ <br>
+  background: linear-gradient(` +
+  angle + "deg, " + color1 + ", " +
+  color2 +
+  `); <br>
+}
+`
+}
+function copyCode() {
+ var range = document.createRange();
+ range.selectNode(document
+  .getElementById(
+   "code")); window.getSelection().removeAllRanges();
+ window.getSelection().addRange(range);
+ document.execCommand("copy"); window.getSelection().removeAllRanges();
+ console.log("Code copied");
+ alert("Copied to clipboard!");
+}
+function setup() {
+ var color1 = "#E0FFFF";
+ var color2 = "#87CEEB";
+ document.getElementById(
+  "color1").value = color1;
+ document.getElementById(
+  "color2").value = color2;
+ var angle = 90;
+ document.getElementById("angle").value =
+  angle;
+ setGradient(color1, color2, angle);
+}
+setup();
+function updateGradient() {
+ var color1 = document.getElementById(
+  "color1").value;
+ var color2 = document.getElementById(
+  "color2").value;
+ var angle = document.getElementById(
+  "angle").value;
+ console.log("update: " + color1 +
+  "/" +
+  color2 + " & " + angle + "deg");
+ setGradient(color1, color2, angle);
+}
+function setGradient(color1, color2,
+ angle) {
+ var gradient = document.getElementById(
+  "gradient");
+ var gradientCode = "linear-gradient(" +
+  angle + "deg, " +
+  color1 + ", " +
+  color2 + ")";
+ gradient.style.background =
+  gradientCode;
+ var code = document.getElementById(
+  "code");
+ code.innerHTML =
+  `
+ .div {
+ <br>
+  background: linear-gradient(` +
+  angle + "deg, " + color1 + ", " +
+  color2 +
+  `); <br>
+}
+`
+}
+function copyCode() {
+ var range = document.createRange();
+ range.selectNode(document
+  .getElementById(
+   "code")); window.getSelection().removeAllRanges();
+ window.getSelection().addRange(range);
+ document.execCommand("copy"); window.getSelection().removeAllRanges();
+ console.log("Code copied");
+ alert("Copied to clipboard!");
+}
+function setup() {
+ var color1 = "#E0FFFF";
+ var color2 = "#87CEEB";
+ document.getElementById(
+  "color1").value = color1;
+ document.getElementById(
+  "color2").value = color2;
+ var angle = 90;
+ document.getElementById("angle").value =
+  angle;
+ setGradient(color1, color2, angle);
+}
+setup();
+  </script>
+ </body>
+</html>
