@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+ <title>Tally Counter</title>
+ <style>
+ body {
+ text-align: center;
+ background-color: black;
+ 
+}
+#outer{
+filter: drop-shadow(3px 3px 7px #252525);
+background-color: #252525;
+text-align: center;
+width: 300px;
+height: 350px;
+border: 5px solid black;
+border-radius: 65px;
+}
+#inner{
+border: 5px solid black;
+margin: 40px 20px 0 20px;
+border-radius: 65px;
+background-color: black;
+color: white;
+}
+#showVal{
+font-weight: bold;
+margin: 0 10px 0 10px;
+border-radius: 5px;
+border: solid 1px #252525;
+text-align: right;
+height: 40px;
+font-size: 40px;
+background-color: #252525;
+padding: 2px;
+
+}
+
+#countB{
+height: 90px;
+width: 90px;
+border-radius: 45px;
+font-size: 40px;
+
+}
+#resetB{
+margin: 10px 0 0 110px;
+width: 34px;
+height: 34px;
+border-radius: 17px;
+font-size: 20px;
+
+}
+p {
+ height: 5px;
+ font-family: courier;
+}
+button{
+text-align: center;
+filter: drop-shadow(4px 3px 9px black);
+outline:none;
+border: none;
+color: white;
+background-color: #252525;
+}
+
+
+ </style>
+</head>
+<body>
+<div id="outer">
+ <div id="inner">
+ <p>Tally Counter</p>
+ <p id="showVal">0</p>
+ <p>Count Reset</p>
+ </div>
+ <button id="resetB" onclick="reset()">0</button><br>
+ <button id="countB" onclick="count()">0</button>
+</div>
+ <script>
+ var counter = 0;
+var disp = document.getElementById(
+ "showVal");
+var resB = document.getElementById(
+ "resetB").style;
+var couB = document.getElementById(
+ "countB").style;
+
+function reset() {
+ counter = 0;
+ btnColor("r");
+ show();
+}
+
+function count() {
+ counter += 1;
+ btnColor("c");
+ show();
+}
+
+function btnColor(x) {
+
+ if (x === "r") {
+
+  resB.color = "white";
+ } else {
+
+  couB.color = "white";
+ }
+ setTimeout(res, 150);
+}
+
+function res() {
+
+ resB.color = "white";
+
+ couB.color = "white";
+}
+
+function show() {
+ disp.style.fontSize = "40px";
+ disp
+  .innerHTML = counter;
+ if (counter % 100 === 0 &&
+  counter !== 0) {
+  disp.style.fontSize = "20px";
+  disp.innerHTML = "wow, clicked " +
+   counter + "×";
+
+ }
+}
+ </script>
+</body>
+</html>
