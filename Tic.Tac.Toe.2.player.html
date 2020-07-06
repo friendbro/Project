@@ -1,0 +1,385 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head><!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-58936387-12"></script>
+            <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-58936387-12');
+            </script><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Passero+One&display=swap" rel="stylesheet">
+<style>
+#start
+{
+align:center;
+margin-top:80px;
+padding:35px 50px 35px 50px;
+background-color: #252525;
+color:white;
+border-radius:30px;
+border-bottom:solid white 10px;
+}
+h1
+{
+font-family: 'Passero One', cursive;
+text-align:center;
+font-size:40px;
+border:dashed 6px white;
+margin:0 0 10px 0;
+padding:3px 0 3px 0;
+background-color: #252525;
+color: white;
+}
+button
+{
+padding:12px 29px 12px 29px;
+border-radius:4px;
+border:none;
+background-color:Transparent;
+font-size:35px;
+}
+body
+{
+  background-color: black;
+    background-position: top center;
+    display: flex;
+    flex-direction:column;
+    min-height: 100vh;
+
+ 
+}
+td
+{
+padding:0;
+}
+table
+{
+margin-right:auto;
+margin-left:auto;
+}
+p
+{
+background-color:White;
+margin:2px auto 2px auto;
+padding:10px 10px 10px 10px;
+border-radius:30px;
+}
+.box {
+color: white;
+border: solid white 1px;
+}
+}
+p
+{
+font-family:'Chelsea Market', cursive;
+font-size:22px;
+background-color: #252525;
+color: white;
+}
+#c
+{
+text-align:center;
+}
+
+
+
+</style>
+<title>Tic Tac Toe</title>
+<h1>TIC-TAC-TOE<small style="font-size:15px;">  By friend.bro</small></h1>
+</head>
+<body>
+<div id="c">
+<button id="start" onclick="start()"> START!</button>
+</div>
+<div class="app-wrap" style="display:none" id="wrap">
+
+<br>
+<div id="textbox">
+  <p id="p1" style="float: left;">Player 1 - 0</p>
+  <p id="p2" style="float: right;">Player 2 - 0</p>
+</div>
+
+<div id="gb">
+
+<br><br>
+
+<br>
+<h4 id="winningnote" style="font-family:'Chelsea Market', cursive; color: white;text-align:center;font-size:25px;">Player 1's Turn--[X]</h4>
+<br>
+<hr color="white">
+<br>
+<table>
+<tr>
+<td>
+<button id="a1" class="box"  onclick="get('a1')">_</button>
+</td>
+<td>
+<button id="a2" class="box" onclick="get('a2')">_</button>
+</td>
+<td>
+<button id="a3" class="box" onclick="get('a3')">_</button>
+</td>
+</tr>
+<tr>
+<td>
+<button id="b1" class="box" onclick="get('b1')">_</button>
+</td>
+<td>
+<button id="b2" class="box" onclick="get('b2')">_</button>
+</td>
+<td>
+<button id="b3" class="box" onclick="get('b3')">_</button>
+</td>
+</tr>
+<tr>
+<td>
+<button id="c1" class="box" onclick="get('c1')">_</button>
+</td>
+<td>
+<button id="c2" class="box" onclick="get('c2')">_</button>
+</td>
+<td>
+<button id="c3" class="box" onclick="get('c3')">_</button>
+</td>
+</tr>
+</table>
+<br>
+
+<hr color="white">
+</div>
+</div>
+<script>
+
+var mark = "O";
+var player1 = prompt(
+ "Enter Player 1's name\nWill play for -- X");
+var player2 = prompt(
+ "Enter Player 2's name\nWill play for O");
+console.log(player1);
+var count = 0;
+var scorep1 = 0;
+var scorep2 = 0;
+var player = "Player 2";
+var plname = player2;
+
+function start() {
+ document.getElementById('wrap')
+  .style.display = "block";
+ document.getElementById('start')
+  .style.display = "none";
+ document.getElementById('p1')
+  .innerHTML = player1 + " - 0";
+ document.getElementById('p2')
+  .innerHTML = player2 + " - 0";
+ document.getElementById(
+   'winningnote').innerHTML =
+  player1 + "'s Turn---[X]";
+ console.log("Started");
+}
+
+function checkWinLose() {
+ var a1 = document.getElementById(
+  'a1').innerHTML;
+ var a2 = document.getElementById(
+  'a2').innerHTML;
+ var a3 = document.getElementById(
+  'a3').innerHTML;
+ var b1 = document.getElementById(
+  'b1').innerHTML;
+ var b2 = document.getElementById(
+  'b2').innerHTML;
+ var b3 = document.getElementById(
+  'b3').innerHTML;
+ var c1 = document.getElementById(
+  'c1').innerHTML;
+ var c2 = document.getElementById(
+  'c2').innerHTML;
+ var c3 = document.getElementById(
+  'c3').innerHTML;
+ var a11 = document.getElementById(
+  'a1').disabled;
+ var a22 = document.getElementById(
+  'a2').disabled;
+ var a33 = document.getElementById(
+  'a3').disabled;
+ var b11 = document.getElementById(
+  'b1').disabled;
+ var b22 = document.getElementById(
+  'b2').disabled;
+ var b33 = document.getElementById(
+  'b3').disabled;
+ var c11 = document.getElementById(
+  'c1').disabled;
+ var c22 = document.getElementById(
+  'c2').disabled;
+ var c33 = document.getElementById(
+  'c3').disabled;
+ if (a11 && a22 && a33 && b11 &&
+  b22 && b33 && c11 && c22 && c33) {
+  document.getElementById(
+    'winningnote').innerHTML =
+   "<b style='color:green;'>DRAW</b><br><button style='padding:5px 8px 5px 8px;font-size:25px;border-radius:8px;font-family:Chelsea Market,cursive;' onclick='reset()'>Click Here To Play Again!</button>";
+
+ } else {
+  if (a1 != "_" && a2 != "_" &&
+   a3 !=
+   "_" && a1 === a2 && a2 === a3) {
+   return true;
+  } else if (b1 != "_" && b2 !=
+   "_" && b3 != "_" && b1 === b2 &&
+   b2 === b3) {
+   return true;
+  } else if (c1 != "_" && c2 !=
+   "_" && c3 != "_" && c1 === c2 &&
+   c2 === c3) {
+   return true;
+  } else if (a1 != "_" && c1 !=
+   "_" && b1 != "_" && a1 === b1 &&
+   b1 === c1) {
+   return true;
+  } else if (a2 != "_" && c2 !=
+   "_" && b2 != "_" && a2 === b2 &&
+   b2 === c2) {
+   return true;
+  } else if (a3 != "_" && b3 !=
+   "_" && c3 != "_" && a3 === b3 &&
+   b3 === c3) {
+   return true;
+  } else if (a1 != "_" && b2 !=
+   "_" && c3 != "_" && a1 === b2 &&
+   b2 === c3) {
+   return true;
+  } else if (a3 != "_" && b2 !=
+   "_" && c1 != "_" && a3 === b2 &&
+   b2 === c1) {
+   return true;
+  }
+
+ }
+}
+
+function get(id) {
+ var pp;
+ var mm;
+ document.getElementById(
+   'winningnote').innerHTML =
+  plname +
+  "'s Turn---[" + mark + "]";
+
+
+ if (count % 2 == 0) {
+  mm = "O";
+  pp = "Player 2";
+  plname = player1;
+  player = "Player 1";
+  mark = "X";
+  count += 1;
+ } else {
+  plname = player2;
+  mm = "X";
+  pp = "Player 1";
+  player = "Player 2";
+  mark = "O";
+  count += 1;
+ }
+ document.getElementById(id)
+  .innerHTML = mark;
+ document.getElementById(id)
+  .disabled = true;
+ document.getElementById(id).style
+  .color = "white";
+
+ if (checkWinLose()) {
+  if (player == "Player 2") {
+   scorep2 += 1;
+   document.getElementById('p2')
+    .innerHTML = player2 + " - " +
+    scorep2;
+
+  } else {
+
+   scorep1 += 1;
+   document.getElementById('p1')
+    .innerHTML = player1 + " - " +
+    scorep1;
+  }
+  document.getElementById('a1')
+   .disabled = true;
+  document.getElementById('a2')
+   .disabled = true;
+  document.getElementById('a3')
+   .disabled = true;
+  document.getElementById('b1')
+   .disabled = true;
+  document.getElementById('b2')
+   .disabled = true;
+  document.getElementById('b3')
+   .disabled = true;
+  document.getElementById('c1')
+   .disabled = true;
+  document.getElementById('c2')
+   .disabled = true;
+  document.getElementById('c3')
+   .disabled = true;
+  document.getElementById(
+    'winningnote').innerHTML =
+   plname +
+   "<b style='color:green;'> Won!</b><br><button style='padding:5px 8px 5px 8px;font-size:25px;border-radius:8px;font-family:Chelsea Market,cursive;'   onclick='reset()'>Click Here To Play Again!</button>";
+
+ }
+}
+
+function reset() {
+ player = "Player 2";
+ plname = player2;
+ mark = "O";
+ count = 0;
+ document.getElementById('a1')
+  .disabled = false;
+ document.getElementById('a2')
+  .disabled = false;
+ document.getElementById('a3')
+  .disabled = false;
+ document.getElementById('b1')
+  .disabled = false;
+ document.getElementById('b2')
+  .disabled = false;
+ document.getElementById('b3')
+  .disabled = false;
+ document.getElementById('c1')
+  .disabled = false;
+ document.getElementById('c2')
+  .disabled = false;
+ document.getElementById('c3')
+  .disabled = false;
+ var a1 = document.getElementById(
+  'a1').innerHTML = "_";
+ var a2 = document.getElementById(
+  'a2').innerHTML = "_";
+ var a3 = document.getElementById(
+  'a3').innerHTML = "_";
+ var b1 = document.getElementById(
+  'b1').innerHTML = "_";
+ var b2 = document.getElementById(
+  'b2').innerHTML = "_";
+ var b3 = document.getElementById(
+  'b3').innerHTML = "_";
+ var c1 = document.getElementById(
+  'c1').innerHTML = "_";
+ var c2 = document.getElementById(
+  'c2').innerHTML = "_";
+ var c3 = document.getElementById(
+  'c3').innerHTML = "_";
+ document.getElementById(
+   'winningnote').innerHTML =
+  player1 + "'s Turn---[X]";
+}
+console.log("working");
+
+</script>
