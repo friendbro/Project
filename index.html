@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+ <title>Projects</title>
+ <Style>
+.head {
+background-color: #252525;
+padding: 10px;
+border-radius:  10px;
+}
+
+.head:hover {
+background-color: black;
+}
+body {
+background-color: black;
+color: white;
+}
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-color: #252525;
+  color: white;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #252525;
+  margin-bottom: 12px;
+  border-radius: 10px;
+}
+
+#myUL {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#myUL li a {
+  border: 1px solid #252525;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #252525;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: black;
+}
+a {
+ color: white;
+ margin-bottom: 10px;
+ border-radius: 10px;
+}
+small {
+font-size: 13px;
+padding: 10px;
+}
+</style>
+</head>
+<body>
+<h1 class="head">Projects<small>By friend.bro</small></h1>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in a name">
+
+<ul id="myUL">
+  <li><a href="https://friendbro.github.io/Project/Clicker-Game-2.0.html">Clicker Game 2.0</a></li>
+  <li><a href="https://friendbro.github.io/Project/Tic.Tac.Toe.html">Tic Tac Toe</a></li>
+
+  <li><a href="https://friendbro.github.io/Project/Tally-Counter.html">Tally Counter</a></li>
+  <li><a href="https://friendbro.github.io/Project/Gradient-Builder.html">Gradiant Builder</a></li>
+
+</ul>
+ <script>
+function myFunction() {
+
+ var input, filter, ul, li, a, i,
+ txtValue;
+
+ input = document.getElementById(
+  "myInput");
+
+ filter = input.value.toUpperCase();
+
+ ul = document.getElementById("myUL");
+
+ li = ul.getElementsByTagName("li");
+
+ for (i = 0; i < li.length; i++) {
+
+  a = li[i].getElementsByTagName("a")[0];
+
+  txtValue = a.textContent || a.innerText;
+
+  if (txtValue.toUpperCase().indexOf(
+    filter) > -1) {
+
+   li[i].style.display = "";
+
+  } else {
+
+   li[i].style.display = "none";
+
+  }
+
+ }
+
+}
+</script>
+</body>
+</html>
