@@ -10,12 +10,7 @@ window.addEventListener('load',
 
  })
 
-  var overlay = document.getElementById("overlay");
 
-window.addEventListener('load', function(){
-  overlay.style.display = 'none';
-})
-  
 function myFunction() {
 
  var input, filter, ul, li, a, i,
