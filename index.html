@@ -4,55 +4,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title>Projects</title>
  <link href='https://fonts.googleapis.com/css?family=Alatsi' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css">
  <Style>
   
-   .status {
-color: white;
-text-align: center;
-background-color: #232323;
-padding: 15px;
-border-radius: 10px;
-margin-top: 10px;
-  }
-  
-  body{
-    width: 100%;
-  
-    overflow-x: hidden;
-}
-
-.spinner{
-    width: 80px;
-    height: 80px;
-    border: 2px solid #f3f3f3;
-    border-top:3px solid #f25a41;
-    border-radius: 100%;
-    position: absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    right: 0;
-    margin: auto;
-    
-    animation: spin 5s infinite linear;
-}
-
-@keyframes spin {
-    from{
-        transform: rotate(0deg);
-    }to{
-        transform: rotate(360deg);
-    }
-}
-
-#overlay{
-  height:100%;
-  width:100%;
-  background:rgba(0, 0, 0, 1);
-  position:fixed;
-  left:0;
-  top:0;
- }
   
 .head {
 background-color: #252525;
@@ -171,9 +125,12 @@ padding: 10px;
 </head>
 <body>
  <div id="overlay">
-<div class="spinner"></div> 
-  <p class="status"> It may take lot of time...<br> 1.1GB</p> 
-</div>
+<div class="loading">
+    <div class="bounceball"></div>
+    <div class="text">It may take lot of time
+    <br>
+    size: 1.1GB</div>
+  </div>
 <h1 class="head">Projects<small>By friend.bro</small></h1>
 <a class="Review" href="https://friendbro.github.io/Project/Review.html">Add a Review</a>
  <a class="Report" href="https://friendbro.github.io/Project/Report-a-Bug.html">Report a Bug</a>
@@ -194,6 +151,7 @@ padding: 10px;
   <li><a href="https://friendbro.github.io/Project/Gradient-Builder.html">Gradiant Builder</a></li>
 
 </ul>
+ <script src="script.js">
  <script>
   
   var overlay = document.getElementById("overlay");
