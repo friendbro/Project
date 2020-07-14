@@ -1,66 +1,81 @@
-body, html { 
-height: 100%; 
-text-align: center;
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+body {
+ float: center;
+  width: 100%;
+  height: 100vh;
+  font-family: Montserrat;
+  background-color: black;
 }
-body { 
-background-color: black;
+
+#overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
-.loading {
-height: 100%;
-width: 100%;
-left: 0;
-right: 0;
-position: absolute;
-display: flex;
-align-items: center;
-justify-content: center;
+
+.text {
+  color: white;
+  display: inline-block;
+  margin-left: 5px;
 }
-.loader { 
-display: inline-block; 
-width: 30px; 
-height: 30px;
-position: relative; 
-border: 4px solid #Fff; 
-animation: loader 1s infinite ease;
+
+.bounceball {
+  position: relative;
+  display: inline-block;
+  height: 37px;
+  width: 15px;
 }
-.loader-inner { 
-vertical-align: top; 
-display: inline-block; 
-width: 100%; 
-background-color: #fff; 
-animation: loader-inner 2s infinite ease-in;
+.bounceball:before {
+  position: absolute;
+  content: '';
+  display: block;
+  top: 0;
+  width: 15px;
+  height: 15px;
+  border-radius: 1%;
+  background-color: white;
+  -webkit-transform-origin: 100%;
+          transform-origin: 100%;
+  -webkit-animation: bounce 500ms alternate infinite ease;
+          animation: bounce 1000ms alternate infinite ease;
 }
-@keyframes loader { 
-0% { 
-transform: rotate(0deg); 
-} 
-25% { 
-transform: rotate(180deg); 
-} 
-50% {
-transform: rotate(180deg); 
-} 
-75% { 
-transform: rotate(360deg); 
+
+@-webkit-keyframes bounce {
+  0% {
+    top: 30px;
+    height: 5px;
+    border-radius: 100px 100px 20px 20px;
+    -webkit-transform: scaleX(2);
+            transform: scaleX(2);
+  }
+  35% {
+    height: 15px;
+    border-radius: 1%;
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+  100% {
+    top: 0;
+  }
 }
-100% {
-transform: rotate(360deg); 
-}
-}
-@keyframes loader-inner { 
-0% { 
-height: 0%; 
-}
- 25% { 
-height: 0%; 
-} 
-50% { 
-height: 100%; 
-} 
-75% { 
-height: 100%; 
-} 
-100% { 
-height: 0%; 
-}
+
+@keyframes bounce {
+  0% {
+    top: 30px;
+    height: 5px;
+    border-radius: 60px 60px 20px 20px;
+    -webkit-transform: scaleX(2);
+            transform: scaleX(2);
+  }
+  35% {
+    height: 15px;
+    border-radius: 50%;
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+  100% {
+    top: 0;
+  }
 }
