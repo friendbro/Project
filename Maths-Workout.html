@@ -1,0 +1,291 @@
+<!doctype html>
+<html>
+<head>
+ <title>Maths Workout</title>
+ <style>
+ div{
+text-align: center;
+}
+
+p {
+ font-size: 22px ;
+ background-color: #006122;
+ color: white;
+ padding: 10px;
+ border-radius: 10px;
+}
+
+.check {
+  background-color: #00129e;
+}
+
+button{
+font-size: 20px;
+background-color: #252525;
+ color: white;
+ border-radius: 10px;
+ background-color: #9b9e00;
+}
+
+button:hover {
+  background-color: black;
+  transition: 0.25s;
+}
+
+input{
+font-size: 20px;
+width: 100px ;
+text-align: center;
+
+}
+
+.number{
+font-size: 30px;
+width: 50px;
+font-family: monospace;
+}
+
+#problem {
+ text-align: center ;
+ font-family: monospace;
+}
+
+body{
+  background-color: black;
+  color: white;
+}
+
+.heading {
+  background-color:  #003c61;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#problem, #feedback {
+  background-color: #610000;
+  padding: 5px;
+  border-radius: 5px;
+  
+}
+ </style>
+</head>
+<body>
+<center>
+<h1 class="heading">Math Workout </h1>
+<p id="feedback"> Start Workout</p>
+<h1 id="problem"></h1>
+<input type="number" id="answer">
+<button class="check" onClick="checkSolution()">Check</button>
+</center>
+<br>
+<div>
+ <button class="number" onClick="inPut(1)">1</button>
+ <button class="number" onClick="inPut(2)">2</button>
+ <button class="number" onClick="inPut(3)">3</button>
+</div>
+<div>
+ <button class="number" onClick="inPut(4)">4</button>
+ <button class="number" onClick="inPut(5)">5</button>
+ <button class="number" onClick="inPut(6)">6</button>
+</div>
+<div>
+ <button class="number" onClick="inPut(7)">7</button>
+ <button class="number" onClick="inPut(8)">8</button>
+ <button class="number" onClick="inPut(9)">9</button> <br>
+ <button class="number" onClick="inPut(0)">0</button> 
+ 
+</div>
+
+<p id="livesleft">Lives: 3</p>
+<p><strong>Correct Answers: </strong><span id="points">0</span></p>
+<p id="difficulty">Difficulty Level = 3</p>
+<center>
+<button onClick="restart() ">RE-START</button>
+<button id="difficulty" onClick="diffi()">Check Difficulty</button>
+</center>
+<br><br><br><br><br>
+ <script>
+ var difficulty = 3;
+var firstNumber;
+var secondNumber;
+var correctAnswer;
+var operator = "+";
+var lives = 3;
+var points = 0;
+
+//digits input
+
+function inPut(digit) {
+ let i = document.getElementById(
+  "answer").value;
+
+ document.getElementById("answer")
+  .value = i + digit;
+}
+
+
+//random number generator
+
+function randomNumber(level) {
+
+
+ if (level > 1) {
+  level -= Math.random();
+ }
+
+ return Math.round(Math.random() * (
+  Math.pow(10, level)));
+
+}
+
+
+// Create problem
+
+function problem(x, y, z) {
+
+
+ x = randomNumber(difficulty);
+ y = randomNumber(difficulty);
+
+ let chooseOperation = Math.random();
+
+ if (chooseOperation < 0.25) {
+  z = "+";
+  correctAnswer = x + y;
+
+ } else if (chooseOperation < 0.5) {
+  z = "-";
+  if (x > y) {
+   /* avoid negative values shifting x and y if x<y */
+   correctAnswer = x - y;
+  } else {
+   correctAnswer = y - x;
+   y = x;
+   x = correctAnswer + x;
+  }
+
+
+ } else if (chooseOperation < 0.75) {
+  z = "x";
+  correctAnswer = x * y;
+ } else {
+  if (y === 0) {
+   y++; /* avoid division by zero */
+  }
+  z = "÷";
+  correctAnswer =
+   x; /* avoid fractions making y an factor of x */
+  x = x * y;
+ }
+
+ document.getElementById("problem")
+  .innerHTML = x + z + y + "=?";
+
+}
+
+
+problem(firstNumber, secondNumber,
+ operator);
+
+
+//check Solution and provide feedback
+
+function checkSolution() {
+
+ let answer = +document.getElementById(
+  "answer").value;
+
+ let correct =
+  "Correct Answer! Try this next one:";
+
+ let wrong =
+  "Sorry, but the correct answer was ";
+
+
+ if (answer === correctAnswer) {
+  document.getElementById("feedback")
+   .innerHTML = correct;
+  points++;
+  difficulty += 0.05;
+ } else {
+  document.getElementById("feedback")
+   .innerHTML = wrong + correctAnswer;
+  lives--;
+  difficulty -= 0.5;
+ }
+
+ document.getElementById("answer")
+  .value = "";
+
+ document.getElementById("points")
+  .innerHTML = points;
+
+ if (lives === 2) {
+  document.getElementById("livesleft")
+   .innerHTML = "Lives: " +
+   '2';
+ }
+ if (lives === 1) {
+  document.getElementById("livesleft")
+   .innerHTML = "Lives: " +
+   '1';
+ }
+ if (lives === 0) {
+   document.getElementById("feedback")
+   .innerHTML = "Work Hard!!!";
+  document.getElementById("livesleft")
+   .innerHTML = "Work Hard!!!";
+  alert("Work Hard!!!");
+ lives = 3;
+ points = 0;
+ difficulty = 3;
+ problem(firstNumber, secondNumber,
+  operator);
+
+ document.getElementById("livesleft")
+  .innerHTML = "Lives: " +
+  '3';
+
+ document.getElementById("points")
+  .innerHTML = 0;
+
+ }
+
+ if (lives > 0) {
+  problem(firstNumber, secondNumber,
+   operator);
+ }
+
+
+}
+
+
+//re-start game
+
+function restart() {
+ lives = 3;
+ points = 0;
+ difficulty = 3;
+ problem(firstNumber, secondNumber,
+  operator);
+
+ document.getElementById("livesleft")
+  .innerHTML = "Lives: " +
+  '3';
+
+ document.getElementById("points")
+  .innerHTML = 0;
+
+ document.getElementById("feedback")
+  .innerHTML = "Successfully Restarted ";
+
+}
+
+function diffi() {
+ document.getElementById("difficulty")
+  .innerHTML = "Difficulty Level = " +
+  difficulty;
+}
+ </script>
+</body>
+</html>
